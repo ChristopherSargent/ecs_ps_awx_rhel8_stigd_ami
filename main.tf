@@ -92,9 +92,9 @@ resource "aws_alb_listener" "listener_https" {
 
 # ec2 instance
 resource "aws_instance" "ps-awx01-terraform-ec2" {
-  ami                         = "ami-0467aa727fd3deae5"
+  ami                         = "ami-0d1d54c4af7fc6167"
   associate_public_ip_address = false
-  availability_zone           = "us-gov-west-1a"
+#  availability_zone           = "us-gov-west-1b"
   enclave_options {
     enabled = false
   }
