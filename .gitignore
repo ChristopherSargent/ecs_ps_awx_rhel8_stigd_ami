@@ -1,0 +1,17 @@
+# ignore ssh key
+ECE-Installer-20200811_010627.pem
+
+# ignore .terraform
+.terraform*
+
+# ignore terraform
+terraform*
+
+# ignore threatq.out
+awx01.out
+
+# ignore variables
+variables.tf
+
+# ignore notused
+notused/*
