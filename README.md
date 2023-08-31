@@ -7,7 +7,7 @@
 # Clone project and terraform deploy from psansible
 1. ssh christopher.sargent@ansible-lb-prestaging-db5f707613698434.elb.us-gov-west-1.amazonaws.com
 2. cd /home/christopher.sargent/ && git clone https://bitbucket.cdmdashboard.com/projects/DBOPS/repos/ps_awx_rhel8_stigd_ami.git
-3. cd awx_terraform_pg/ && vim providers.tf
+3. cd ps_awx_rhel8_stigd_ami && vim providers.tf
 ```
 # Playground
 provider "aws" {
@@ -89,7 +89,7 @@ variable "kms_key_id" {
 ```
 7. terraform init && terraform plan --out awx01.out
 8. terraform apply "awx01.out"
-9. https://console.amazonaws-us-gov.com > EC2 > search for ps-awx01-terraform-ec2 and verify instance is up
+9. https://console.amazonaws-us-gov.com > EC2 > search for awx and verify ps-awx01-terraform-ec2 instance is up
 
 ![Screenshot](resources/ps-awx01-terraform-ec2.JPG)
 
@@ -97,25 +97,8 @@ variable "kms_key_id" {
 
 ![Screenshot](resources/awx-pg-terraform-alb.JPG)
 
-# Update resources names if needed
-* Note. This is only needed if deploying additional resources.
-1. ssh -i ECE-Installer-20200811_010627.pem ec2-user@PG-TerraformPublicIP
-2. sudo -i
-3. cd /home/christopher.sargent/ecs_threatq_terraform_ps
-4. cp main.tf main.tf.BAK
-5. sed -i -e 's|terraform|terraform01|g' main.tf
-```
-The resources are now named
-
-awx-pg-terraform01-ec2 and awx-pg-terraform01-alb
-
-versus
-
-awx-pg-terraform-ec2 and awx-pg-terraform-alb
-```
 # Terraform destroy if needed
 * Note. This is only if AWX is no longer needed.
-1. ssh -i ECE-Installer-20200811_010627.pem ec2-user@PG-TerraformPublicIP
-2. sudo -i
-3. cd /home/christopher.sargent/awx_terraform_pg
-4. terraform destroy
+1. ssh christopher.sargent@ansible-lb-prestaging-db5f707613698434.elb.us-gov-west-1.amazonaws.com
+2. cd /home/christopher.sargent/ps_awx_rhel8_stigd_ami
+3. terraform destroy
